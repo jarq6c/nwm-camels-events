@@ -1,8 +1,6 @@
 """Process CAMELS bains."""
-from custom_modules.configuration import load_config, download_files
-
-import pandas as pd
-# from hydrotools.nwis_client.iv import IVDataService
+from custom_modules.configuration import load_config
+from custom_modules.data import load_camels_list, download_files
 
 def main():
     """Main function to process CAMELS basins."""
@@ -16,11 +14,7 @@ def main():
     config = download_files(config)
 
     # Load CAMELS list
-    camels_list = pd.read_csv(
-        config.file_mapping["camels_list"].filepath,
-        sep=";",
-        dtype=str
-        )
+    camels_list = load_camels_list(config)
 
     print(camels_list)
 

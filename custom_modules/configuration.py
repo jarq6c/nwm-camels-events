@@ -2,7 +2,6 @@
 from pathlib import Path
 from typing import Annotated
 from pydantic import BaseModel, HttpUrl, AfterValidator
-from hydrotools.nwm_client.FileDownloader import FileDownloader
 
 class FileDetails(BaseModel):
     """Details of the file to be downloaded.
@@ -70,25 +69,4 @@ def load_config(config_file: str) -> Config:
     """
     with open(config_file, "r", encoding="utf-8") as fi:
         config = Config.model_validate_json(fi.read())
-    return config
-
-def download_files(config: Config) -> Config:
-    """Download files specified in the configuration.
-    
-    Parameters
-    ----------
-    config : Config
-        Configuration object containing file details and download URLs.
-    
-    Returns
-    -------
-    Config
-        Updated configuration object with file paths.
-    """
-    file_list = []
-    for k, v in config.file_mapping.items():
-        config.file_mapping[k].filepath = config.data_dir / v.filename
-        file_list.append((str(v.url), str(v.filepath)))
-    downloader = FileDownloader()
-    downloader.get(file_list)
     return config
