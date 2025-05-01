@@ -1,5 +1,5 @@
 """Process CAMELS bains."""
-from modules.configuration import load_config, download_files
+from custom_modules.configuration import load_config, download_files
 # from hydrotools.nwis_client.iv import IVDataService
 
 def main():
