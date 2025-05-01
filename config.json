@@ -1,0 +1,9 @@
+{
+    "data_dir": "./data",
+    "file_mapping": {
+        "camels_list": {
+            "url": "https://gdex.ucar.edu/dataset/camels/file/camels_name.txt",
+            "filename": "camels_name.txt"
+        }
+    }
+}
